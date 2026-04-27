@@ -1,0 +1,1373 @@
+/* =========================================================
+   ARPAN PORTFOLIO - STYLE.CSS
+   Matches your current index.html structure.
+
+   Theme:
+   - Midnight purple background
+   - Dim yellow cursor glow
+   - Premium glass cards
+   - Clean one-page portfolio
+========================================================= */
+
+
+/* ---------- 1. Main Theme Variables ---------- */
+
+:root {
+  --bg: #0b0014;
+  --bg-2: #12001f;
+  --bg-3: #1a0630;
+
+  --card: rgba(28, 10, 45, 0.72);
+  --card-strong: rgba(42, 16, 67, 0.82);
+
+  --text: #f8f2ff;
+  --muted: #b9a9c9;
+  --faint: #8c7a9f;
+
+  --purple: #8b5cf6;
+  --purple-soft: #c084fc;
+  --gold: #d6b85a;
+  --gold-dim: rgba(214, 184, 90, 0.16);
+
+  --border: rgba(255, 230, 150, 0.12);
+  --border-purple: rgba(192, 132, 252, 0.18);
+
+  --shadow: 0 24px 90px rgba(0, 0, 0, 0.42);
+  --radius: 28px;
+  --max-width: 1180px;
+}
+
+
+/* ---------- 2. Reset / Base ---------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 18% 8%, rgba(139, 92, 246, 0.22), transparent 32%),
+    radial-gradient(circle at 82% 20%, rgba(214, 184, 90, 0.08), transparent 28%),
+    radial-gradient(circle at 55% 80%, rgba(192, 132, 252, 0.12), transparent 36%),
+    linear-gradient(135deg, var(--bg) 0%, var(--bg-2) 48%, var(--bg-3) 100%);
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(214, 184, 90, 0.28);
+  color: var(--text);
+}
+
+
+/* ---------- 3. Background Noise + Cursor Glow ---------- */
+
+/* This gives the background a subtle premium grain/grid feel */
+.noise {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  opacity: 0.55;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 58px 58px;
+  mask-image: linear-gradient(to bottom, black, transparent 88%);
+}
+
+/* This is the dim yellow cursor aura */
+.cursor-glow {
+  position: fixed;
+  width: 320px;
+  height: 320px;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(214, 184, 90, 0.34) 0%,
+    rgba(214, 184, 90, 0.18) 28%,
+    rgba(214, 184, 90, 0.08) 52%,
+    transparent 76%
+  );
+  filter: blur(16px);
+  opacity: 1;
+}
+
+
+/* ---------- 4. Navbar ---------- */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: min(var(--max-width), calc(100% - 40px));
+  margin: 18px auto 0;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 230, 150, 0.1);
+  border-radius: 999px;
+  background: rgba(10, 0, 20, 0.62);
+  backdrop-filter: blur(22px);
+  box-shadow: 0 18px 70px rgba(0, 0, 0, 0.32);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+}
+
+.brand span {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #12001f;
+  font-size: 0.9rem;
+  font-weight: 950;
+  background: linear-gradient(135deg, var(--gold), var(--purple-soft));
+  box-shadow: 0 0 28px rgba(214, 184, 90, 0.22);
+}
+
+.nav nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.nav nav a {
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 750;
+  transition: 0.22s ease;
+}
+
+.nav nav a:hover {
+  color: var(--gold);
+  transform: translateY(-1px);
+}
+
+
+/* ---------- 5. General Sections ---------- */
+
+.section {
+  width: min(var(--max-width), calc(100% - 40px));
+  margin: 0 auto;
+  padding: 115px 0;
+  position: relative;
+}
+
+.section-head {
+  max-width: 780px;
+  margin-bottom: 44px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 36px;
+  height: 1px;
+  background: var(--gold);
+  box-shadow: 0 0 18px rgba(214, 184, 90, 0.45);
+}
+
+.eyebrow h4 {
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -0.065em;
+}
+
+h2 {
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  line-height: 0.95;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+
+/* ---------- 6. Hero ---------- */
+
+.hero {
+  min-height: calc(100vh - 90px);
+  display: flex;
+  align-items: center;
+  padding-top: 95px;
+}
+
+
+.hero-copy {
+  max-width: 920px;
+}
+
+.hero h1 {
+  margin-bottom: 24px;
+  font-size: clamp(4.2rem, 13vw, 10.6rem);
+  line-height: 0.82;
+  font-weight: 950;
+  background: linear-gradient(135deg, #ffffff 0%, #d9c7ff 38%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-text {
+  max-width: 760px;
+  color: var(--muted);
+  font-size: clamp(1.08rem, 2vw, 1.36rem);
+  line-height: 1.75;
+  margin-bottom: 34px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 34px;
+}
+
+.hero-actions.center {
+  justify-content: center;
+}
+
+.status-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.status-row span {
+  padding: 12px 15px;
+  border: 1px solid rgba(255, 230, 150, 0.1);
+  border-radius: 999px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(12px);
+  font-size: 0.92rem;
+}
+
+.status-row b {
+  color: var(--text);
+}
+
+
+/* ---------- 7. Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 13px 20px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 900;
+  transition: 0.22s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.btn.primary,
+.btn.btn-primary {
+  color: #13001f;
+  background: linear-gradient(135deg, var(--gold), var(--purple-soft));
+  box-shadow: 0 0 34px rgba(214, 184, 90, 0.18);
+}
+
+.btn.primary:hover,
+.btn.btn-primary:hover {
+  box-shadow: 0 0 44px rgba(214, 184, 90, 0.28);
+}
+
+.btn.ghost {
+  color: var(--text);
+  border: 1px solid rgba(255, 230, 150, 0.13);
+  background: rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(14px);
+}
+
+.btn.ghost:hover {
+  border-color: rgba(214, 184, 90, 0.36);
+  color: var(--gold);
+}
+
+
+/* ---------- 8. Split Sections: About + Skills ---------- */
+
+.split {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+.section-label {
+  position: sticky;
+  top: 118px;
+  color: var(--gold);
+  font-size: 0.86rem;
+  font-weight: 950;
+  letter-spacing: 0.22em;
+}
+
+.section-content {
+  padding: 40px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(circle at top right, rgba(214, 184, 90, 0.07), transparent 34%),
+    var(--card);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow);
+}
+
+.section-content h2 {
+  margin-bottom: 24px;
+}
+
+.section-content p {
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.85;
+  margin-bottom: 18px;
+}
+
+
+/* ---------- 9. Projects ---------- */
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.project-card {
+  min-height: 390px;
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(circle at 90% 10%, rgba(214, 184, 90, 0.09), transparent 34%),
+    radial-gradient(circle at 10% 90%, rgba(139, 92, 246, 0.12), transparent 34%),
+    var(--card);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  transition: 0.28s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(214, 184, 90, 0.28);
+  box-shadow:
+    var(--shadow),
+    0 0 55px rgba(214, 184, 90, 0.1);
+}
+
+.project-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 34px;
+}
+
+.project-top span {
+  color: var(--gold);
+  font-size: 0.9rem;
+  font-weight: 950;
+}
+
+.project-top a {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 850;
+}
+
+.project-top a:hover {
+  color: var(--gold);
+}
+
+.project-card h3 {
+  font-size: 1.75rem;
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+
+.project-card p {
+  color: var(--muted);
+  line-height: 1.72;
+  margin-bottom: 26px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: auto;
+}
+
+.tags span {
+  padding: 8px 11px;
+  border-radius: 999px;
+  color: #e8dcf7;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+
+/* ---------- 10. Skills ---------- */
+
+.skill-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 34px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(circle at top left, rgba(139, 92, 246, 0.14), transparent 34%),
+    var(--card);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow);
+}
+
+.skill-cloud span {
+  padding: 13px 17px;
+  border-radius: 999px;
+  color: var(--text);
+  border: 1px solid rgba(255, 230, 150, 0.12);
+  background: rgba(255, 255, 255, 0.045);
+  font-size: 0.94rem;
+  font-weight: 850;
+  transition: 0.22s ease;
+}
+
+.skill-cloud span:hover {
+  transform: translateY(-3px);
+  color: var(--gold);
+  border-color: rgba(214, 184, 90, 0.34);
+  box-shadow: 0 0 30px rgba(214, 184, 90, 0.08);
+}
+
+
+/* ---------- 11. Certifications ---------- */
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.cert-card {
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at top right, rgba(214, 184, 90, 0.065), transparent 34%),
+    rgba(18, 0, 31, 0.72);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow);
+  transition: 0.25s ease;
+}
+
+.cert-card:hover {
+  transform: translateY(-7px);
+  border-color: rgba(214, 184, 90, 0.24);
+}
+
+.cert-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+}
+
+.cert-card p {
+  color: var(--muted);
+  line-height: 1.65;
+  font-size: 0.95rem;
+}
+
+.cert-card a {
+  display: inline-block;
+  margin-top: 18px;
+  color: var(--gold);
+  font-weight: 900;
+  font-size: 0.9rem;
+}
+
+
+/* ---------- 12. Timeline ---------- */
+
+.timeline-section {
+  padding-top: 80px;
+}
+
+.timeline {
+  display: grid;
+  gap: 18px;
+  max-width: 920px;
+}
+
+.time-item {
+  position: relative;
+  padding: 30px 30px 30px 34px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow);
+}
+
+.time-item::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 26px;
+  bottom: 26px;
+  width: 3px;
+  border-radius: 999px;
+  background: linear-gradient(to bottom, var(--gold), var(--purple-soft));
+}
+
+.time-item span {
+  display: block;
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.time-item h3 {
+  font-size: 1.45rem;
+  margin-bottom: 10px;
+}
+
+.time-item p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+
+/* ---------- 13. Contact ---------- */
+
+.contact {
+  text-align: center;
+  padding: 90px 42px;
+  border: 1px solid rgba(214, 184, 90, 0.15);
+  border-radius: 38px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(214, 184, 90, 0.09), transparent 30%),
+    radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.18), transparent 34%),
+    rgba(28, 10, 45, 0.72);
+  backdrop-filter: blur(20px);
+  box-shadow:
+    var(--shadow),
+    0 0 70px rgba(214, 184, 90, 0.08);
+  margin-bottom: 90px;
+}
+
+.contact h2 {
+  max-width: 950px;
+  margin: 0 auto 22px;
+}
+
+.contact p {
+  color: var(--muted);
+  margin-bottom: 30px;
+  font-size: 1.05rem;
+}
+
+
+/* ---------- 14. Footer ---------- */
+
+footer {
+  width: min(var(--max-width), calc(100% - 40px));
+  margin: 0 auto;
+  padding: 34px 0 44px;
+  color: var(--faint);
+  border-top: 1px solid rgba(255, 230, 150, 0.08);
+  text-align: center;
+  font-size: 0.92rem;
+}
+
+
+/* ---------- 15. Reveal Animation ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ---------- 16. Animations ---------- */
+
+@keyframes orbFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-18px) scale(1.03);
+  }
+}
+
+
+/* ---------- 17. Responsive / Mobile ---------- */
+
+@media (max-width: 980px) {
+  .nav {
+    border-radius: 26px;
+    align-items: flex-start;
+  }
+
+  .nav nav {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cert-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .split {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .section-label {
+    position: static;
+  }
+}
+
+@media (max-width: 680px) {
+  .nav {
+    margin-top: 12px;
+    padding: 14px;
+    border-radius: 24px;
+    flex-direction: column;
+  }
+
+  .nav nav {
+    justify-content: flex-start;
+  }
+
+  .nav nav a {
+    font-size: 0.82rem;
+  }
+
+  .section {
+    width: min(100% - 28px, var(--max-width));
+    padding: 78px 0;
+  }
+
+  .hero {
+    padding-top: 70px;
+  }
+
+  .hero h1 {
+    font-size: clamp(3.6rem, 18vw, 6rem);
+  }
+
+  .hero-text {
+    font-size: 1rem;
+  }
+
+  .hero::after {
+    width: 300px;
+    height: 300px;
+    right: -25%;
+    top: 20%;
+  }
+
+  .status-row {
+  grid-template-columns: 1fr;
+  width: 100%;
+}
+
+.status-row span {
+  width: 100%;
+  min-width: 0;
+}
+
+  .section-content,
+  .skill-cloud {
+    padding: 26px;
+  }
+
+  .cert-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact {
+    padding: 64px 22px;
+    border-radius: 28px;
+  }
+}
+/* =========================================================
+   SKILLS SECTION - reference-style column layout
+   This replaces the old pill/cloud style.
+========================================================= */
+
+.skills-section {
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+/* Small outlined title pill: "Technical Skills" */
+.skills-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 34px;
+  padding: 5px 13px;
+  border: 3px solid var(--gold);
+  border-radius: 12px;
+  color: var(--text);
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  box-shadow: 0 0 22px rgba(214, 184, 90, 0.14);
+}
+
+.skills-pill span {
+  color: var(--gold);
+}
+
+/* Main 4-column skill area */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: rgba(4, 0, 22, 0.18);
+  border-radius: 26px;
+  overflow: hidden;
+}
+
+/* Each column */
+.skill-column {
+  min-height: 390px;
+  padding: 0 30px;
+  border-right: 1px solid rgba(248, 242, 255, 0.45);
+}
+
+.skill-column:last-child {
+  border-right: none;
+}
+
+/* Headings like:
+   Programming
+   Languages
+*/
+.skill-column h3 {
+  margin-bottom: 32px;
+  font-size: clamp(1.65rem, 2.4vw, 2.3rem);
+  line-height: 1.22;
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  color: var(--text);
+}
+
+.skill-column h3 span {
+  display: block;
+  color: var(--gold);
+}
+
+/* Skill list */
+.skill-column ul {
+  list-style: none;
+  display: grid;
+  gap: 22px;
+}
+
+/* Each skill item */
+.skill-column li {
+  position: relative;
+  padding-left: 26px;
+  color: var(--text);
+  font-size: clamp(1rem, 1.4vw, 1.18rem);
+  line-height: 1.35;
+  font-weight: 500;
+}
+
+/* Yellow bullet */
+.skill-column li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.58em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 14px rgba(214, 184, 90, 0.5);
+}
+
+/* Hover makes each column feel alive */
+.skill-column {
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.skill-column:hover {
+  background: rgba(214, 184, 90, 0.035);
+  transform: translateY(-4px);
+}
+
+/* Mobile/tablet responsive */
+@media (max-width: 980px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .skill-column {
+    min-height: 320px;
+    padding: 28px;
+    border-right: 1px solid rgba(248, 242, 255, 0.28);
+    border-bottom: 1px solid rgba(248, 242, 255, 0.22);
+  }
+
+  .skill-column:nth-child(2) {
+    border-right: none;
+  }
+
+  .skill-column:nth-child(3),
+  .skill-column:nth-child(4) {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 680px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skill-column {
+    min-height: auto;
+    padding: 28px 0;
+    border-right: none;
+    border-bottom: 1px solid rgba(248, 242, 255, 0.22);
+  }
+
+  .skill-column:last-child {
+    border-bottom: none;
+  }
+
+  .skills-pill {
+    font-size: 1.05rem;
+    border-width: 2px;
+  }
+}
+/* =========================================================
+   HERO RIGHT-SIDE PROFILE PHOTO
+   Puts your photo where the glow/orb currently appears.
+========================================================= */
+
+/* Makes hero text left + photo right */
+.hero {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: 60px;
+}
+
+/* Keep your text above the glow */
+.hero-copy {
+  position: relative;
+  z-index: 2;
+}
+
+/* Right side photo area */
+.hero-photo-wrap {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 520px;
+}
+
+/* Big glowing background behind photo */
+.hero-photo-wrap::before {
+  content: "";
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(214, 184, 90, 0.24), transparent 18%),
+    radial-gradient(circle at 65% 70%, rgba(192, 132, 252, 0.34), transparent 34%),
+    radial-gradient(circle, rgba(139, 92, 246, 0.22), transparent 68%);
+  filter: blur(10px);
+  opacity: 0.95;
+  z-index: -2;
+  animation: photoGlowFloat 7s ease-in-out infinite;
+}
+
+/* Extra soft purple shadow */
+.hero-photo-wrap::after {
+  content: "";
+  position: absolute;
+  width: 390px;
+  height: 390px;
+  border-radius: 50%;
+  background: rgba(139, 92, 246, 0.13);
+  filter: blur(55px);
+  z-index: -3;
+}
+
+/* Ring around photo */
+.hero-photo-ring {
+  width: clamp(340px, 38vw, 500px);
+  height: clamp(340px, 38vw, 500px);
+  border-radius: 50%;
+  padding: 8px;
+  background:
+    linear-gradient(135deg, rgba(214, 184, 90, 0.95), rgba(192, 132, 252, 0.95), rgba(214, 184, 90, 0.65));
+  box-shadow:
+    0 0 38px rgba(214, 184, 90, 0.20),
+    0 0 90px rgba(139, 92, 246, 0.25);
+}
+
+/* Actual photo */
+.hero-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  border: 10px solid rgba(11, 0, 20, 0.95);
+  filter: contrast(1.05) saturate(1.08);
+}
+
+/* Floating animation */
+@keyframes photoGlowFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-16px) scale(1.03);
+  }
+}
+
+/* Mobile: photo goes under your intro */
+@media (max-width: 980px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .hero-photo-wrap {
+    min-height: 380px;
+  }
+
+  .hero-photo-wrap::before {
+    width: 380px;
+    height: 380px;
+  }
+
+  .hero-photo-ring {
+    width: 340px;
+    height: 340px;
+  }
+}
+
+@media (max-width: 680px) {
+  .hero-photo-wrap {
+    min-height: 320px;
+  }
+
+  .hero-photo-ring {
+    width: 240px;
+    height: 240px;
+  }
+
+  .hero-photo-wrap::before {
+    width: 380px;
+    height: 380px;
+  }
+}
+/* =========================================================
+   EDUCATION + CERTIFICATIONS SECTION
+   Clean achievement-style section, not a long boring list.
+========================================================= */
+
+.credentials-section {
+  padding-top: 115px;
+}
+
+.section-intro {
+  max-width: 760px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  margin-top: 18px;
+}
+
+.credentials-layout {
+  display: grid;
+  grid-template-columns: 0.9fr 1.35fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.credential-block {
+  min-height: 100%;
+  padding: 30px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(circle at 90% 10%, rgba(214, 184, 90, 0.075), transparent 32%),
+    radial-gradient(circle at 10% 90%, rgba(139, 92, 246, 0.11), transparent 34%),
+    var(--card);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow);
+}
+
+.block-title-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.block-kicker {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #13001f;
+  background: linear-gradient(135deg, var(--gold), var(--purple-soft));
+  font-size: 0.86rem;
+  font-weight: 950;
+  box-shadow: 0 0 28px rgba(214, 184, 90, 0.18);
+}
+
+.block-title-row h3 {
+  font-size: 2rem;
+  line-height: 1;
+  letter-spacing: -0.055em;
+}
+
+/* Education cards */
+
+.education-list {
+  display: grid;
+  gap: 16px;
+}
+
+.education-card {
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  gap: 18px;
+  padding: 20px;
+  border: 1px solid rgba(255, 230, 150, 0.1);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.035);
+  transition: 0.22s ease;
+}
+
+.education-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(214, 184, 90, 0.28);
+  background: rgba(214, 184, 90, 0.045);
+}
+
+.edu-year {
+  width: 62px;
+  height: 62px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  background: rgba(214, 184, 90, 0.075);
+  border: 1px solid rgba(214, 184, 90, 0.18);
+  font-weight: 950;
+}
+
+.education-card h4 {
+  font-size: 1.08rem;
+  margin-bottom: 4px;
+  letter-spacing: -0.03em;
+}
+
+.education-card p {
+  color: var(--gold);
+  font-weight: 850;
+  margin-bottom: 8px;
+}
+
+.education-card span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+/* Certification category cards */
+
+.cert-category-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.cert-category-card {
+  padding: 20px;
+  border: 1px solid rgba(255, 230, 150, 0.1);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.035);
+  transition: 0.22s ease;
+}
+
+.cert-category-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(214, 184, 90, 0.25);
+}
+
+.highlight-cert {
+  background:
+    radial-gradient(circle at top right, rgba(214, 184, 90, 0.11), transparent 34%),
+    rgba(255, 255, 255, 0.045);
+}
+
+.cert-category-top {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.cert-category-top span {
+  color: var(--text);
+  font-size: 1.05rem;
+  font-weight: 950;
+  letter-spacing: -0.035em;
+}
+
+.cert-category-top small {
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.cert-category-card ul {
+  list-style: none;
+  display: grid;
+  gap: 9px;
+}
+
+.cert-category-card li {
+  position: relative;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.cert-category-card li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 12px rgba(214, 184, 90, 0.38);
+}
+
+.credential-note {
+  margin-top: 18px;
+  padding: 16px 18px;
+  border: 1px solid rgba(214, 184, 90, 0.12);
+  border-radius: 18px;
+  color: var(--muted);
+  background: rgba(214, 184, 90, 0.045);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.credential-note a {
+  display: inline-block;
+  margin-left: 6px;
+  color: var(--gold);
+  font-weight: 900;
+}
+
+/* Hide old certificate grid styling conflicts if any remain */
+.cert-grid {
+  display: none;
+}
+
+/* Mobile */
+@media (max-width: 1050px) {
+  .credentials-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .cert-category-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .credential-block {
+    padding: 22px;
+  }
+
+  .cert-category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .education-card {
+    grid-template-columns: 1fr;
+  }
+
+  .edu-year {
+    width: fit-content;
+    height: auto;
+    padding: 9px 12px;
+    border-radius: 999px;
+  }
+
+  .credential-note a {
+    display: block;
+    margin-left: 0;
+    margin-top: 8px;
+  }
+}
+/* =========================================================
+   CURRENT FOCUS CARD
+   Makes the current focus section feel more active and premium.
+========================================================= */
+
+.current-focus-card {
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(214, 184, 90, 0.13), transparent 28%),
+    radial-gradient(circle at 88% 70%, rgba(192, 132, 252, 0.16), transparent 34%),
+    rgba(28, 10, 45, 0.78);
+}
+
+.current-focus-card h3 {
+  font-size: clamp(1.8rem, 3vw, 2.7rem);
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #ffffff, #d9c7ff, var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.current-focus-card p {
+  max-width: 760px;
+  margin-bottom: 24px;
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.75;
+}
+
+.focus-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.focus-grid div {
+  padding: 18px;
+  border: 1px solid rgba(255, 230, 150, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.045);
+  transition: 0.22s ease;
+}
+
+.focus-grid div:hover {
+  transform: translateY(-4px);
+  border-color: rgba(214, 184, 90, 0.28);
+  background: rgba(214, 184, 90, 0.055);
+}
+
+.focus-grid strong {
+  display: block;
+  color: var(--gold);
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+
+.focus-grid small {
+  display: block;
+  color: var(--text);
+  opacity: 0.82;
+  line-height: 1.55;
+  font-size: 0.88rem;
+}
+
+@media (max-width: 780px) {
+  .focus-grid {
+    grid-template-columns: 1fr;
+  }
+}
