@@ -1,0 +1,8 @@
+{
+  "name": "arpan-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio of Arpan Mukhia — Data Analyst, AI Builder, and automation-focused problem solver.",
+  "dependencies": {
+    "@vercel/speed-insights": "^1.0.12"
+  }
+}
